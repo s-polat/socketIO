@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import './app.css';
+import { useState } from "react";
+import "./app.css";
+import Card from "./components/card/Card";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -9,10 +11,22 @@ function App() {
   console.log(user);
   return (
     <div className="container">
-      <div className="login">
-        <input type="text" placeholder="username" onChange={(e)=>setUsername(e.target.value)}/>
-        <button onClick={()=>setUser(username)} >Login</button>
-      </div>
+      {user ? (
+        <>
+          <Navbar />
+          <Card />
+          <span className="username">{user}</span>
+        </>
+      ) : (
+        <div className="login">
+          <input
+            type="text"
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <button onClick={() => setUser(username)}>Login</button>
+        </div>
+      )}
     </div>
   );
 }

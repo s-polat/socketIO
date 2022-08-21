@@ -3,7 +3,7 @@ import './card.css'
 
 function Card() {
   return (
-    <div>Card</div>
+    <div className='card'>Card</div>
   )
 }
 
