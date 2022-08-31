@@ -8,7 +8,10 @@ import HeartFilled from '../../img/heartFilled.svg'
 
 
 function Card({post}) {
-  const [like, setLike] = React.useState(false)
+  const [liked, setLiked] = React.useState(false)
+  const handleNotification = () => {
+    setLiked(true)
+  }
   return (
     <div className='card'>
       <div className="info">
@@ -17,7 +20,7 @@ function Card({post}) {
       </div>
       <img src={post.postImg} alt="" className="postImg" />
       <div className="interaction">
-        {like ? <img src={HeartFilled} alt="" className="cardIcon" onClick={() => setLike(false)}/> : <img src={Heart} alt="" className="cardIcon" onClick={() => setLike(true)}/>}
+        {liked ? <img src={HeartFilled} alt="" className="cardIcon" /> : <img src={Heart} alt="" className="cardIcon" onClick={handleNotification}/>}
         <img src={Comment} alt="" className="cardIcon" />
         <img src={Share} alt="" className="cardIcon" />
         <img src={Info} alt="" className="cardIcon infoIcon" />

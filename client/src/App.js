@@ -9,6 +9,11 @@ function App() {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState("");
 
+  useEffect(() => {
+    const socket = io("http://localhost:5000");
+    console.log(socket);
+  }, []);
+
   return (
     <div className="container">
       {user ? (
