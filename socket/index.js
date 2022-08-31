@@ -12,7 +12,7 @@ const addNewUser = ( username, socketId ) => {
     !onlineUsers.some((user) => user.username === username) && onlineUsers.push({ username, socketId });
 }
 
-const removeUser = ( username ) => {
+const removeUser = ( socketId ) => {
     onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
 }
 
@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
 
     socket.on("sendNotification", ({senderName, receiverName, type}) => {
         const receiver = getUser(receiverName);
-        io.to(receiver.senderId).emit("getNotification", {senderName, type});
+        io.to(receiver.socketId).emit("getNotification", {senderName, type});
     })
 
     socket.on("disconnect", () => {

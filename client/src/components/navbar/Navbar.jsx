@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './navbar.css'
 import Notification from '../../img/bell-solid.svg'
 import Message from '../../img/message.svg'
 import Settings from '../../img/settings.svg'
+import { useEffect } from 'react'
 
-function Navbar() {
+function Navbar({socket}) {
+    const [notifications, setNotifications] = useState([])
+
+    useEffect(()=>{
+        socket.on("getNotification", (data)=>{
+            setNotifications((prev)=>[...prev, data])
+        })
+
+    },[socket])
+
+    console.log("notifications",notifications);
   return (
     <div className='navbar'>
         <span className='logo'>Chat </span>
