@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./navbar.css";
-import Notification from "../../img/bell-solid.svg";
+import Notification from "../../img/bell.png";
 import Message from "../../img/message.svg";
 import Settings from "../../img/settings.svg";
 import { useEffect } from "react";
@@ -31,26 +31,32 @@ function Navbar({ socket }) {
     );
   };
 
+  const handleRead = () => {
+    setNotifications([]);
+    setOpen(false);
+  }
+
   return (
     <div className="navbar">
-      <span className="logo">Chat </span>
+      <span className="logo">Chapp </span>
       <div className="icons">
         <div className="icon" onClick={() => setOpen(!open)}>
           <img src={Notification} className="iconImg" alt="" />
-          <div className="counter">2</div>
+          {notifications.length > 0 && (
+          <div className="counter">{notifications.length}</div>
+          )}
         </div>
         <div className="icon" onClick={() => setOpen(!open)}>
           <img src={Message} className="iconImg" alt="" />
-          <div className="counter">2</div>
         </div>
         <div className="icon" onClick={() => setOpen(!open)}>
           <img src={Settings} className="iconImg" alt="" />
-          <div className="counter">2</div>
         </div>
       </div>
       {open && (
         <div className="notifications">
           {notifications.map((n) => displayNotifications(n))}
+          <button className="nButton"onClick={handleRead}>Mark as read</button>
         </div>
       )}
     </div>

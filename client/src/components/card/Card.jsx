@@ -11,7 +11,7 @@ function Card({post, socket, user}) {
   const [liked, setLiked] = React.useState(false)
 
   const handleNotification = (type) => {
-   if(type===1){ setLiked(true) }
+   type===1 && setLiked(true) 
     socket.emit('sendNotification', {
       senderName: user,
       receiverName: post.username,

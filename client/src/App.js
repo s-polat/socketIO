@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    socket?.emit("newUser", username);
+    socket?.emit("newUser", user);
   }, [socket,user]);
 
   return (
@@ -30,6 +30,7 @@ function App() {
         </>
       ) : (
         <div className="login">
+          <h2>Chapp</h2>
           <input
             type="text"
             placeholder="username"
